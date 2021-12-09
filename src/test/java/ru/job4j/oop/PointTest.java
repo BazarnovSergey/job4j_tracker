@@ -5,7 +5,6 @@ import org.junit.Test;
 
 public class PointTest {
 
-
     @Test
     public void when7To4And4To24Then20() {
         Point a = new Point(7, 4);
