@@ -17,7 +17,7 @@ public class TriangleTest {
     }
 
     @Test
-    public void NotTriangle() {
+    public void notTriangle() {
         int expected = -1;
         Point a = new Point(0, 0);
         Point b = new Point(7, 5);
