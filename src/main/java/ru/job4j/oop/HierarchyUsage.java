@@ -2,14 +2,13 @@ package ru.job4j.oop;
 
 public class HierarchyUsage {
     public static void main(String[] args) {
-        Car car = new Car();
-        Transport tp = car;
-        Object obj = car;
-        Object ocar = new Car();
-        Car carFromObject = (Car) ocar;
-
-        System.out.println(new Car());
-        System.out.println(new Bicycle());
-        System.out.println(new Object());
+        Vehicle train = new Train();
+        Vehicle bus = new Bus();
+        Vehicle airplane = new Airplane();
+        Vehicle[] vehicles = {train, bus, airplane};
+        for (Vehicle a : vehicles) {
+            a.move();
+            a.stop();
+        }
     }
 }
