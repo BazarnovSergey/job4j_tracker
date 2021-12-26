@@ -5,4 +5,3 @@ public class ElementNotFoundException extends Exception {
         super(message);
     }
 }
-
