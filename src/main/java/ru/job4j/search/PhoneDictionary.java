@@ -1,6 +1,5 @@
 package ru.job4j.search;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class PhoneDictionary {
@@ -10,7 +9,7 @@ public class PhoneDictionary {
         this.persons.add(person);
     }
 
-    public ArrayList<Person> find(String key) throws FileNotFoundException {
+    public ArrayList<Person> find(String key) {
         ArrayList<Person> result = new ArrayList<>();
         for (Person person : persons) {
             if (person.getName().contains(key)
@@ -18,8 +17,6 @@ public class PhoneDictionary {
                     || person.getPhone().contains(key)
                     || person.getAddress().contains(key)) {
                 result.add(person);
-            } else {
-                throw new FileNotFoundException("FileNotFound");
             }
         }
         return result;
