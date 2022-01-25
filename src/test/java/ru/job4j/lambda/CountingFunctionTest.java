@@ -8,7 +8,6 @@ import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-
 public class CountingFunctionTest {
     @Test
     public void whenLinearFunctionThenLinearResults() {
