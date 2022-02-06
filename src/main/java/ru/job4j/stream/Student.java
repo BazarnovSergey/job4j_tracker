@@ -24,11 +24,6 @@ public class Student {
         this.surname = surname;
     }
 
-    public Student(String surname, int score) {
-        this.surname = surname;
-        this.score = score;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
