@@ -71,11 +71,12 @@ public class BankService {
      * Если пользователь не найден, метод возращает null
      */
     public Optional<Account> findByRequisite(String passport, String requisite) {
+        Optional<Account> account = Optional.empty();
         Optional<User> user = findByPassport(passport);
         return user.map(value -> users.get(value)
                 .stream()
                 .filter(s -> s.getRequisite().equals(requisite))
-                .findFirst()).orElse(null);
+                .findFirst()).orElse(account);
     }
 
     /**
