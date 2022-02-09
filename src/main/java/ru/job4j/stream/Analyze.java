@@ -98,7 +98,7 @@ public class Analyze {
         return stream
                 .flatMap(subjects -> subjects.getSubjects().stream())
                 .collect(Collectors.groupingBy(
-                        Subject::getName, LinkedHashMap::new,
+                        Subject::getName,
                         Collectors.summingDouble(Subject::getScore)))
                 .entrySet()
                 .stream()
