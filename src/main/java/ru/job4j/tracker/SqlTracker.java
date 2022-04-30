@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -84,10 +83,7 @@ public class SqlTracker implements Store, AutoCloseable {
         try (PreparedStatement ps = cn.prepareStatement("select * from items")) {
             try (ResultSet resultSet = ps.executeQuery()) {
                 while (resultSet.next()) {
-                    items.add(new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name")
-                    ));
+                    items.add(getItemFromDatabase(resultSet));
                 }
             }
         } catch (SQLException e) {
@@ -103,10 +99,7 @@ public class SqlTracker implements Store, AutoCloseable {
             ps.setString(1, key);
             try (ResultSet resultSet = ps.executeQuery()) {
                 while (resultSet.next()) {
-                    items.add(new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name")
-                    ));
+                    items.add(getItemFromDatabase(resultSet));
                 }
             }
         } catch (Exception e) {
@@ -121,16 +114,21 @@ public class SqlTracker implements Store, AutoCloseable {
         try (PreparedStatement ps = cn.prepareStatement("select * from items where id = ?")) {
             ps.setInt(1, id);
             try (ResultSet resultSet = ps.executeQuery()) {
-                while (resultSet.next()) {
-                    item = new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name")
-                    );
+                if (resultSet.next()) {
+                    item = getItemFromDatabase(resultSet);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return item;
+    }
+
+    private Item getItemFromDatabase(ResultSet resultSet) throws SQLException {
+        return new Item(
+                resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getTimestamp("created").toLocalDateTime()
+        );
     }
 }
