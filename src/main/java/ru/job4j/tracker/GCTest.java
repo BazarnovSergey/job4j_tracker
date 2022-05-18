@@ -1,11 +1,25 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 public class GCTest {
 
     public static void main(String[] args) {
         MemTracker memTracker = new MemTracker();
-        for (int i = 0; i < 100_000; i++) {
-            memTracker.add(new Item("item " + i));
-        }
+        Output output = new ConsoleOutput();
+        Input input = new ValidateInput(output, new ConsoleInput());
+        Store tracker = new MemTracker();
+        List<UserAction> actions = List.of(
+                new CreateAction(output),
+                new ReplaceAction(output),
+                new DeleteAction(output),
+                new ShowAllItemsAction(output),
+                new FindByIdAction(output),
+                new FindByNameAction(output),
+                new ExitAction(output),
+                new CreateManyAction((output)),
+                new DeleteManyAction(output)
+        );
+        new StartUI(output).init(input, tracker, actions);
     }
 }
