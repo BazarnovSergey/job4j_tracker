@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-public class DeleteManyAction implements UserAction{
+public class DeleteManyAction implements UserAction {
 
     private final Output out;
 
