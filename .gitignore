@@ -27,3 +27,6 @@ hs_err_pid*
 
 target
 out
+# H2 DataBase
+testdb.mv.db
+testdb.trace.db
