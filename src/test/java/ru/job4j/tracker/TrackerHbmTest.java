@@ -6,12 +6,11 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
 
 public class TrackerHbmTest {
 
@@ -20,7 +19,7 @@ public class TrackerHbmTest {
     SessionFactory sf = new MetadataSources(registry)
             .buildMetadata().buildSessionFactory();
 
-    @Before
+    @BeforeEach
     public void wipeItemsTable() {
         try (Session session = sf.openSession()) {
             session.beginTransaction();
